@@ -180,7 +180,13 @@
                 display: none !important;
             }
 
-            /* Logo stays centered and bigger on mobile */
+            /* Logo stays centered and bigger on mobile - fix centering */
+            .navbar .absolute {
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                position: absolute !important;
+            }
+
             .navbar img {
                 height: 70px;
                 width: 70px;
@@ -241,6 +247,26 @@
             #fullscreenMenu .container {
                 padding-left: 0.75rem !important;
                 padding-right: 0.75rem !important;
+            }
+
+            /* Center footer content on mobile */
+            .footer .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                text-align: center !important;
+            }
+
+            .footer .grid > div {
+                text-align: center !important;
+            }
+
+            .footer-links {
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .footer-social {
+                justify-content: center !important;
             }
         }
 
