@@ -1,0 +1,4046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORSA - Ultra-Premium Automotive Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600&family=Alex+Brush&family=Cormorant+Garamond:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+    <style>
+        /* Custom Variables */
+        :root {
+            --primary-black: #0A0A0A;
+            --secondary-black: #111111;
+            --primary-red: #E01E3C;
+            --off-white: #F8F8F8;
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --premium-black: #0A0A0A;
+            --soft-gray: #F8F9FA;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --shadow-premium: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.02em;
+        }
+
+        .cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .script {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        .light-weight {
+            font-weight: 300;
+        }
+
+        .ultra-light {
+            font-weight: 200;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0A0A0A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+        }
+
+        /* Utility Classes */
+        .bg-black-gradient {
+            background: linear-gradient(to bottom, #000000, #0A0A0A);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #ffffff, #dddddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .horizontal-line {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .horizontal-line::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            background-color: var(--primary-red);
+            left: -100px;
+            animation: line-slide 5s infinite linear;
+        }
+
+        @keyframes line-slide {
+            0% {
+                left: -100px;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .section-divider {
+            position: relative;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 1px;
+            width: 100px;
+            background-color: var(--primary-red);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: transparent;
+            backdrop-filter: none;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-smooth);
+            padding: 0;
+        }
+
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Navbar Optimizations */
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .navbar .flex {
+                height: 70px;
+            }
+
+            /* Hide Contact Us on mobile only */
+            .contact-us-link {
+                display: none !important;
+            }
+
+            /* Logo stays centered and bigger on mobile */
+            .navbar img {
+                height: 70px;
+                width: 70px;
+            }
+
+            /* Burger menu stays on left, just hide text and make icon bigger */
+            .menu-toggle span {
+                display: none;
+            }
+
+            .menu-toggle i {
+                font-size: 1.6rem;
+            }
+
+            .menu-toggle {
+                padding: 0.5rem;
+            }
+
+            /* Fix fullscreen menu for mobile */
+            #fullscreenMenu {
+                width: 100vw !important;
+                height: 100vh !important;
+                max-width: 100vw !important;
+                max-height: 100vh !important;
+                overflow: hidden !important;
+                left: 0 !important;
+                top: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+            }
+
+            #fullscreenMenu .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                margin: 0 !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .flex {
+                height: 70px;
+            }
+
+            .navbar img {
+                height: 65px;
+                width: 65px;
+            }
+
+            .menu-toggle i {
+                font-size: 1.5rem;
+            }
+
+            /* Smaller padding for phones */
+            #fullscreenMenu .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .navbar .flex {
+                height: 65px;
+            }
+
+            .navbar img {
+                height: 60px;
+                width: 60px;
+            }
+
+            .menu-toggle i {
+                font-size: 1.4rem;
+            }
+
+            /* Even smaller padding for small phones */
+            #fullscreenMenu .container {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+            margin: 0 1.5rem;
+            padding: 0.5rem 0;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: var(--primary-red);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+
+        .logo-accent {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-left: 0.25rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0px;
+
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-video-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.481) 0%, rgba(0, 0, 0, 0.459) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: calc(100% - 80px);
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 2rem;
+            border-left: 1px solid var(--primary-red);
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Hero Fade-in Animation */
+        .hero-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes heroFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(224, 30, 60, 0.3);
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover:before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(224, 30, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 14px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            padding: 14px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 7rem 0;
+            position: relative;
+        }
+
+        .section-heading {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            line-height: 1.1;
+        }
+
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background: var(--primary-red);
+            bottom: -1rem;
+            left: 0;
+        }
+
+        .section-heading-center {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            line-height: 1.1;
+        }
+
+        .section-heading-center:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background: var(--primary-red);
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subheading {
+            font-size: 1.1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--primary-red);
+            z-index: 1;
+        }
+
+        .about-content {
+            padding-left: 2rem;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .about-text {
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .about-signature {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3rem;
+            line-height: 1;
+            color: #000;
+            margin-top: 2rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--primary-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1530046339915-78e95388ac76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .stats-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .stats-subtitle {
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .stat-item:hover::before {
+            width: 100%;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .stat-label {
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Why Choose Us Section */
+        .why-us-section {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .why-us-list {
+            margin-top: 2rem;
+        }
+
+        .why-us-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .why-us-icon-container {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(224, 30, 60, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .why-us-icon {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+        }
+
+        .why-us-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            color: #000;
+        }
+
+        .why-us-text {
+            color: #444;
+            font-weight: 300;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(to bottom, #000000 0%, #0A0A0A 100%);
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(224, 30, 60, 0.4);
+            box-shadow: 0 25px 50px rgba(224, 30, 60, 0.15), 0 0 0 1px rgba(224, 30, 60, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(224, 30, 60, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), #ff6b6b, var(--primary-red));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+            height: 280px;
+        }
+
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .service-card:hover .service-img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .service-img-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(224, 30, 60, 0.2) 0%, transparent 50%, rgba(224, 30, 60, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .service-card:hover .service-img-container::before {
+            opacity: 1;
+        }
+
+        .service-content {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .service-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-title {
+            background: linear-gradient(135deg, #ffffff 0%, rgba(224, 30, 60, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transform: translateY(-2px);
+        }
+
+        .service-text {
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem 0;
+        }
+
+        .service-feature {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        .service-feature i {
+            color: var(--primary-red);
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .gallery-row {
+            display: flex;
+            gap: 20px;
+            height: 300px;
+        }
+
+        .gallery-item {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+
+            transition: var(--transition-smooth);
+            border-radius: 8px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item.wide {
+            flex: 2;
+        }
+
+        .gallery-item.narrow {
+            flex: 0.7;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        .gallery-btn {
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 0.5rem 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-btn:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            background-color: var(--primary-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            height: 100%;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(224, 30, 60, 0.2);
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .testimonial-card:hover::before {
+            width: 100%;
+        }
+
+        .testimonial-quote {
+            font-size: 5rem;
+            color: rgba(224, 30, 60, 0.1);
+            line-height: 0;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            height: 40px;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: var(--primary-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .testimonial-info h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-rating {
+            color: var(--primary-red);
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-nav {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 0 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-button:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--primary-black);
+        }
+
+        .contact-info {
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        /* Premium Contact Cards */
+        .contact-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(224, 30, 60, 0.05) 0%,
+                transparent 50%,
+                rgba(224, 30, 60, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-red), #ff4757, var(--primary-red));
+            border-radius: 16px 16px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .contact-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(224, 30, 60, 0.3);
+            box-shadow:
+                0 20px 40px rgba(224, 30, 60, 0.15),
+                0 8px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card .contact-icon {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-red), #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(224, 30, 60, 0.3));
+        }
+
+        .contact-card .contact-text h4 {
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-text h4 {
+            background: linear-gradient(135deg, #ffffff 0%, rgba(224, 30, 60, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transform: translateY(-2px);
+        }
+
+        /* Premium Contact Form */
+        .premium-contact-form {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(15px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(224, 30, 60, 0.03) 25%,
+                rgba(224, 30, 60, 0.05) 50%,
+                rgba(224, 30, 60, 0.03) 75%,
+                transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 1s ease;
+        }
+
+        .premium-contact-form:hover::before {
+            transform: translateX(100%);
+        }
+
+        .premium-contact-form::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), #ff4757, #ff6b7a, var(--primary-red));
+            border-radius: 20px 20px 0 0;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; transform: translateX(-10px); }
+            50% { opacity: 1; transform: translateX(10px); }
+        }
+
+        .premium-contact-form .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .premium-contact-form .form-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-red);
+            box-shadow:
+                0 0 20px rgba(224, 30, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            outline: none;
+            transform: translateY(-2px);
+        }
+
+        .premium-contact-form .form-submit {
+            background: linear-gradient(135deg, var(--primary-red), #ff4757);
+            border: none;
+            border-radius: 12px;
+            padding: 1.25rem 2rem;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(224, 30, 60, 0.3);
+        }
+
+        .premium-contact-form .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .premium-contact-form .form-submit:hover::before {
+            left: 100%;
+        }
+
+        .premium-contact-form .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(224, 30, 60, 0.4);
+        }
+
+        /* Premium Maps Container */
+        .premium-maps {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(15px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .premium-maps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-red), #ff4757, var(--primary-red));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .premium-maps iframe {
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        .contact-icon {
+            margin-right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-red);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem 0;
+        }
+
+        /* Section Divider Line */
+        .section-divider-line {
+            height: 4px;
+            width: 100%;
+            background: var(--primary-red);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Process Cards - Frosty Glass */
+        .process-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-card:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 5px 20px rgba(224, 30, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(224, 30, 60, 0.3);
+        }
+
+        .process-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-image img {
+            transition: transform 0.3s ease;
+        }
+
+        .process-card:hover .process-image img {
+            transform: scale(1.05);
+        }
+
+        .process-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Modern Testimonial Styles */
+        .featured-testimonial {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), #ff4757, var(--primary-red));
+            border-radius: 24px 24px 0 0;
+        }
+
+        .quote-icon {
+            color: var(--primary-red);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-text-large {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .featured-author {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .author-details h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-featured {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .stars i {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .rating-text {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .verified-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-left: auto;
+        }
+
+        .modern-testimonial-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modern-testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(224, 30, 60, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars-rating i {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .review-source {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .review-text {
+            color: #e5e7eb;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-name {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .reviewer-title {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+
+        .trust-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-label {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .featured-author {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .verified-badge {
+                margin-left: 0;
+            }
+
+            .trust-indicators {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .testimonial-text-large {
+                font-size: 1.25rem;
+            }
+        }
+
+        .contact-text h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 1rem;
+            font-weight: 300;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--primary-red);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .form-submit:hover {
+            background-color: #c01932;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.03);
+            margin-right: 0.75rem;
+            color: #fff;
+            font-size: 1.25rem;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-red);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #000;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-about {
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        .footer-heading {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-link {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-link a:hover {
+            color: var(--primary-red);
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact-icon {
+            margin-right: 0.75rem;
+            color: var(--primary-red);
+            font-size: 1rem;
+        }
+
+        .footer-contact-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .footer-social {
+            display: flex;
+        }
+
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+        }
+
+        .lightbox-next {
+            right: 1rem;
+        }
+
+        /* Hardware-Accelerated Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Reveal Animations */
+        .hero-reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .hero-reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .hero-reveal-stagger-1 {
+            transition-delay: 0.2s;
+        }
+
+        .hero-reveal-stagger-2 {
+            transition-delay: 0.4s;
+        }
+
+        .hero-reveal-stagger-3 {
+            transition-delay: 0.6s;
+        }
+
+        /* Slide in from left */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Slide in from right */
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .slide-in-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scale reveal */
+        .scale-reveal {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .scale-reveal.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Float animation for hero elements */
+        .hero-float {
+            animation: heroFloat 6s ease-in-out infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Premium Stats Section */
+        .premium-stats-section {
+            position: relative;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            overflow: hidden;
+        }
+
+        .stats-background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(224, 30, 60, 0.05) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .stats-content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Premium Badge */
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+        }
+
+        .badge-diamond {
+            color: #E01E3C;
+            margin-left: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        /* Premium Title */
+        .premium-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-underline {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #E01E3C 50%, transparent 100%);
+            margin: 0 auto 2rem auto;
+        }
+
+        .premium-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Premium Stats Grid */
+        .premium-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .premium-stat-card {
+            position: relative;
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 360px;
+        }
+
+        .premium-stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow:
+                inset 0 0 60px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.6);
+            border-radius: 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Individual Card Backgrounds - Replace these URLs with your generated images */
+        .vehicles-card {
+            background-image: url('images/ex1.png');
+        }
+
+        .clients-card {
+            background-image: url('images/ex2.png');
+        }
+
+        .service-card1 {
+            background-image: url('images/ex3.png');
+        }
+
+        .guarantee-card {
+            background-image: url('images/ex4.png');
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 3;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.1) 0%,
+                    rgba(0, 0, 0, 0.3) 50%,
+                    rgba(0, 0, 0, 0.1) 100%);
+            backdrop-filter: blur(1px);
+            border-radius: 24px;
+        }
+
+        .premium-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #E01E3C, transparent);
+            transition: 0.8s;
+            z-index: 4;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .premium-stat-card:hover::before {
+            left: 100%;
+        }
+
+        .premium-stat-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow:
+                0 25px 50px rgba(224, 30, 60, 0.15),
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(224, 30, 60, 0.2);
+        }
+
+        .premium-stat-card:hover::after {
+            box-shadow:
+                inset 0 0 80px rgba(0, 0, 0, 0.2),
+                inset 0 0 40px rgba(224, 30, 60, 0.1);
+        }
+
+        .premium-stat-card:hover .card-content {
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.05) 0%,
+                    rgba(0, 0, 0, 0.2) 50%,
+                    rgba(0, 0, 0, 0.05) 100%);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #E01E3C 0%, #c41230 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem auto;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow:
+                0 15px 30px rgba(224, 30, 60, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: rotate(45deg);
+            transition: 0.6s;
+        }
+
+        .premium-stat-card:hover .stat-icon::before {
+            animation: shine 1.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(224, 30, 60, 0.3);
+            position: relative;
+        }
+
+        .stat-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-shadow:
+                1px 1px 3px rgba(0, 0, 0, 0.8),
+                0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* Premium CTA Button */
+        .premium-cta-button {
+            background: linear-gradient(135deg, #E01E3C 0%, #c41230 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(224, 30, 60, 0.4);
+        }
+
+        .premium-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(224, 30, 60, 0.5);
+        }
+
+        .btn-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .premium-cta-button:hover .btn-shine {
+            left: 100%;
+        }
+
+        /* Premium Why Us Section */
+        .premium-why-us {
+            position: relative;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+            overflow: hidden;
+        }
+
+        /* Floating Background Orbs */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(224, 30, 60, 0.03) 0%, rgba(224, 30, 60, 0.01) 100%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 3s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* Header Styling */
+        .badge-accent {
+            color: var(--primary-red);
+            margin-left: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--premium-black);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .title-accent-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-red) 0%, rgba(224, 30, 60, 0.3) 100%);
+            margin: 0 auto 2rem auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+            padding: 0 2rem;
+        }
+
+        .feature-left {
+            /* Content on left, image on right - default order */
+        }
+
+        .feature-right {
+            /* Image on left, content on right */
+        }
+
+        .feature-right .feature-visual {
+            order: -1;
+        }
+
+        /* Feature Content */
+        .feature-content {
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--primary-red) 0%, rgba(224, 30, 60, 0.3) 100%);
+            transition: var(--transition-smooth);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .feature-section:hover .feature-content::before {
+            height: 100%;
+        }
+
+        .feature-section:hover .feature-content {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(224, 30, 60, 0.15);
+        }
+
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, #c41230 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(224, 30, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            transform: rotate(45deg);
+            transition: 0.6s;
+        }
+
+        .feature-section:hover .feature-icon::before {
+            animation: shine 1.5s ease-in-out;
+        }
+
+        .feature-badge {
+            background: rgba(224, 30, 60, 0.1);
+            color: var(--primary-red);
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid rgba(224, 30, 60, 0.2);
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--premium-black);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .feature-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #555555;
+        }
+
+        .highlight-item i {
+            color: var(--primary-red);
+            font-size: 0.8rem;
+            width: 16px;
+            height: 16px;
+            background: rgba(224, 30, 60, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Feature Visual */
+        .feature-visual {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition-smooth);
+        }
+
+        .feature-section:hover .image-container {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .image-container:hover .feature-image {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 6rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--soft-gray) 0%, #ffffff 100%);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+        }
+
+        .cta-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--premium-black);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cta-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #666666;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .premium-cta {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #c41230 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 1.2rem 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 30px rgba(224, 30, 60, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .premium-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(224, 30, 60, 0.4);
+        }
+
+        .cta-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .premium-cta:hover .cta-shine {
+            left: 100%;
+        }
+
+        .cta-arrow {
+            transition: var(--transition-smooth);
+        }
+
+        .premium-cta:hover .cta-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .section-heading,
+            .section-heading-center {
+                font-size: 2.5rem;
+            }
+
+            .gallery-row {
+                height: 250px;
+            }
+
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            /* Make all images appear first in mobile view */
+            .feature-section .feature-visual {
+                order: 1;
+            }
+
+            .feature-section .feature-content {
+                order: 2;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .feature-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-heading,
+            .section-heading-center {
+                font-size: 2rem;
+            }
+
+            .stat-item {
+                margin-bottom: 2rem;
+            }
+
+            .about-image::after {
+                display: none;
+            }
+
+            .testimonial-card {
+                margin-bottom: 2rem;
+            }
+
+            .gallery-row {
+                flex-direction: column;
+                height: auto;
+                gap: 15px;
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-row {
+                gap: 10px;
+            }
+
+            .gallery-item {
+                height: 180px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .feature-title {
+                font-size: 1.6rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .floating-orb {
+                display: none;
+            }
+
+            .premium-cta {
+                padding: 1rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            .feature-section {
+                margin-bottom: 4rem;
+                padding: 0 1rem;
+            }
+
+            .feature-image {
+                height: 300px;
+            }
+
+            .premium-title {
+                font-size: 2.5rem;
+            }
+
+            .premium-stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .premium-stat-card {
+                min-height: 320px;
+            }
+
+            .card-content {
+                padding: 2.5rem 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar  fixed top-0 left-0 w-full z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center relative h-20">
+                <!-- Menu Button (Left) -->
+                <button id="menuToggleBtn"
+                    class="menu-toggle text-white flex items-center hover:text-red-500 transition-all">
+                    <span class="montserrat text-xs uppercase tracking-widest mr-2 font-light">MENU</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Centered Logo -->
+                <div class="absolute left-1/2 transform -translate-x-1/2">
+                    <!-- Replace with your actual image logo -->
+                    <a href="#home" class="block">
+                        <img src="logo.png" alt="CORSA" class="h-28 w-28">
+                    </a>
+                </div>
+
+                <!-- Right Action -->
+                <a href="#contact" class="contact-us-link text-white text-sm montserrat uppercase tracking-widest font-light hover:text-red-500 transition">
+                    <span>CONTACT US</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Full-screen Menu (Glass Effect) -->
+    <div id="fullscreenMenu"
+        class="fixed inset-0 bg-black bg-opacity-0 backdrop-filter backdrop-blur-0 z-50 pointer-events-none opacity-0 transition-all duration-500 ease-in-out">
+        <div class="container mx-auto px-6 h-full">
+            <div class="flex justify-between items-center py-6">
+                <!-- Empty space for alignment -->
+                <div></div>
+
+                <!-- Centered Logo in Menu -->
+                <div>
+                    <!-- Replace with your actual image logo -->
+                    <a href="#" class="block">
+                        <img src="logo.png" alt="CORSA" class="h-28 w-28">
+                    </a>
+                </div>
+
+                <!-- Close Button -->
+                <button id="menuCloseBtn" class="menu-close text-white text-xl hover:text-red-500 transition-all">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col items-center justify-center h-4/5">
+                <div class="text-center">
+                    <a href="#home"
+                        class="block text-white hover:text-red-500 transition py-4 text-2xl montserrat font-light uppercase tracking-widest menu-link">Home</a>
+                    <a href="#about"
+                        class="block text-white hover:text-red-500 transition py-4 text-2xl montserrat font-light uppercase tracking-widest menu-link">About</a>
+                    <a href="#services"
+                        class="block text-white hover:text-red-500 transition py-4 text-2xl montserrat font-light uppercase tracking-widest menu-link">Services</a>
+                    <a href="#gallery"
+                        class="block text-white hover:text-red-500 transition py-4 text-2xl montserrat font-light uppercase tracking-widest menu-link">Gallery</a>
+                    <a href="#contact"
+                        class="block text-white hover:text-red-500 transition py-4 text-2xl montserrat font-light uppercase tracking-widest menu-link">Contact</a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-16 left-0 right-0 text-center">
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-white hover:text-red-500 transition">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-500 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-500 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-500 transition">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-video-container">
+            <!-- Video background with poster image -->
+            <video autoplay loop muted playsinline poster="poster.webp" class="w-full h-full object-cover">
+                <source src="hero.webm" type="video/webm">
+                <!-- Fallback image if video doesn't load -->
+                <img src="poster.webp" alt="Luxury Car Detailing">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="container mx-auto px-6">
+            <div class="hero-content flex items-center justify-center text-center">
+                <div>
+                    <p class="hero-subtitle montserrat hero-fade-in" style="animation-delay: 0.3s;">Experience the Best in</p>
+                    <h1 class="hero-title cormorant text-gradient hero-fade-in mx-auto" style="animation-delay: 0.6s;">
+                        Automotive Care
+                    </h1>
+                    <p class="hero-description montserrat hero-fade-in" style="animation-delay: 0.9s;">
+                        Transforming vehicles into works of art, one detail at a time.
+                    </p>
+                    <div class="flex justify-center mt-12 hero-fade-in" style="animation-delay: 1.2s;">
+                        <a href="#about" class="btn-primary">Learn More</a>
+                        <a href="#contact" class="btn-secondary ml-4">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 text-center">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+        </div>
+
+        <!-- Light transition effect -->
+        <div class="section-transition-light"></div>
+        <div class="section-transition-rays"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="about-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80"
+                        alt="Luxury Car Detail" class="w-full h-auto shadow-xl relative z-10">
+                </div>
+
+                <div data-aos="fade-left">
+                    <p class="section-subheading montserrat">About Us</p>
+                    <h2 class="section-heading cormorant text-black">Change The Look of Your Car</h2>
+                    <h3 class="text-2xl cormorant text-gray-700 mb-4">Meet the Team Behind the Wheels..</h3>
+                    <p class="about-text montserrat">
+                        At Corsa Automotive, we redefine automotive detailing, paint protection, and body repair with precision, innovation, and excellence. Our mission is to deliver world-class vehicle care through state-of-the-art technology, premium materials, and expert craftsmanship.
+                    </p>
+                    <p class="about-text montserrat">
+                        We believe that every vehicle deserves to look and perform at its best. Whether it's restoring a vehicle's original beauty, enhancing its durability, or protecting it from environmental damage, our team of professionals ensures an exceptional standard of service. From high-performance coatings to advanced body repair solutions, we provide meticulous attention to every detail.
+                    </p>
+                    <p class="about-text montserrat">
+                        With our expansion to Kottayam, we are bringing internationally acclaimed auto care solutions closer to you. Our focus remains on delivering unparalleled results, elevating customer experiences, and setting new benchmarks in the automotive care industry.
+                    </p>
+                    <p class="about-text montserrat">
+                        At Corsa Automotive, your vehicle is not just another car—it's a reflection of excellence.
+                    </p>
+                    <div class="mt-8">
+                        <a href="#services" class="btn-primary bg-black">Our Services</a>
+                    </div>
+                    <p class="about-signature mt-12">Excellence in every detail</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-24 bg-black text-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <p class="section-subheading montserrat text-red-600" data-aos="fade-up">Our Process</p>
+                <h2 class="section-heading cormorant text-white" data-aos="fade-up" data-aos-delay="200">How It Works</h2>
+                <p class="section-subtitle max-w-3xl mx-auto text-gray-300" data-aos="fade-up" data-aos-delay="400">
+                    Corsa Follows 03 Steps
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Step 1: Evaluate -->
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-image">
+                        <img src="images/step1.png" alt="Vehicle Evaluation Process" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="process-content">
+                        <div class="process-number bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold cormorant mx-auto mb-6">
+                            01
+                        </div>
+                        <h3 class="text-2xl font-bold cormorant mb-4 text-white">Evaluate</h3>
+                        <p class="text-gray-300 montserrat">
+                            Inspecting your vehicle to identify areas for improvement.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Enhance -->
+                <div class="process-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-image">
+                        <img src="images/step2.png" alt="Vehicle Enhancement Process" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="process-content">
+                        <div class="process-number bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold cormorant mx-auto mb-6">
+                            02
+                        </div>
+                        <h3 class="text-2xl font-bold cormorant mb-4 text-white">Enhance</h3>
+                        <p class="text-gray-300 montserrat">
+                            Correcting imperfections and enhancing appearance with state-of-the-art techniques
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Protect -->
+                <div class="process-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="process-image">
+                        <img src="images/step3.png" alt="Vehicle Protection Process" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="process-content">
+                        <div class="process-number bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold cormorant mx-auto mb-6">
+                            03
+                        </div>
+                        <h3 class="text-2xl font-bold cormorant mb-4 text-white">Protect</h3>
+                        <p class="text-gray-300 montserrat">
+                            Applying advanced coatings to safeguard your vehicle's finish.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Red Section Divider -->
+    <div class="section-divider-line"></div>
+
+    <!-- Premium Stats Section -->
+    <section class="premium-stats-section">
+        <div class="stats-background-overlay"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="stats-content-wrapper">
+                <!-- Header -->
+                <div class="text-center mb-20">
+                    <div class="premium-badge">
+                        <span class="badge-text">EXCELLENCE</span>
+                        <div class="badge-diamond">◆</div>
+                    </div>
+                    <h2 class="premium-title">Unparalleled Automotive Excellence</h2>
+                    <div class="title-underline"></div>
+                    <p class="premium-subtitle">
+                        Where precision meets perfection. Our commitment to automotive artistry sets the standard for
+                        luxury
+                        vehicle care.
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="premium-stats-grid">
+                    <div class="premium-stat-card vehicles-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-content">
+                            <div class="stat-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Elite Vehicles Served</div>
+                            <div class="stat-description">Luxury and supercars meticulously crafted</div>
+                        </div>
+                    </div>
+
+                    <div class="premium-stat-card clients-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-content">
+                            <div class="stat-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="stat-number">20K+</div>
+                            <div class="stat-label">Distinguished Clients</div>
+                            <div class="stat-description">Connoisseurs who demand perfection</div>
+                        </div>
+                    </div>
+
+                    <div class="premium-stat-card service-card1" data-aos="fade-up" data-aos-delay="600">
+                        <div class="card-content">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Concierge Service</div>
+                            <div class="stat-description">White-glove support when you need it</div>
+                        </div>
+                    </div>
+
+                    <div class="premium-stat-card guarantee-card" data-aos="fade-up" data-aos-delay="800">
+                        <div class="card-content">
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Lifetime Guarantee</div>
+                            <div class="stat-description">Unwavering commitment to excellence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium CTA -->
+                <div class="text-center mt-16">
+                    <button class="premium-cta-button">
+                        <span class="btn-text">Experience Excellence</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Premium Why Choose Us Section - Bugatti x SaaS Design -->
+    <section class="premium-why-us">
+        <!-- Floating Background Elements -->
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+
+        <div class="container mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-20">
+
+                <p class="section-subheading montserrat text-red-600" data-aos="fade-up">Distinction</p>
+                <h2 class="section-title">Why Industry Leaders Choose Corsa</h2>
+                <div class="title-accent-line"></div>
+                <p class="section-subtitle">
+                    Where precision engineering meets uncompromising excellence. Every detail meticulously crafted for
+                    the
+                    discerning automotive connoisseur.
+                </p>
+            </div>
+
+            <!-- Feature 1: Content Left, Image Right -->
+            <div class="feature-section feature-left" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-content">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="feature-badge">01</div>
+                    </div>
+                    <h3 class="feature-title">Global Excellence Standards</h3>
+                    <p class="feature-description">
+                        Swiss precision meets German engineering. Every process certified to international luxury
+                        automotive
+                        standards with meticulous attention to detail that defines true craftsmanship.
+                    </p>
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>ISO 9001:2015 Certified</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>OEM Approved Processes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <div class="image-container">
+                        <img src="images/industry1.png"
+                            alt="Global Excellence Standards" class="feature-image">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Image Left, Content Right -->
+            <div class="feature-section feature-right" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-visual">
+                    <div class="image-container">
+                        <img src="images/industry2.png"
+                            alt="Master Certified Artisans" class="feature-image">
+
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="feature-badge">02</div>
+                    </div>
+                    <h3 class="feature-title">Master Certified Artisans</h3>
+                    <p class="feature-description">
+                        Trained by luxury marques and continuously educated in cutting-edge techniques. Our craftsmen
+                        combine traditional artistry with modern innovation for unparalleled results.
+                    </p>
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>Factory-Trained Specialists</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>Continuous Education Program</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Content Left, Image Right -->
+            <div class="feature-section feature-left" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-content">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="feature-badge">03</div>
+                    </div>
+                    <h3 class="feature-title">Obsessive Quality Control</h3>
+                    <p class="feature-description">
+                        Multi-stage inspection protocol ensures every vehicle receives microscopic attention. Our
+                        quality
+                        assurance process exceeds industry standards with final master approval.
+                    </p>
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>7-Point Inspection Process</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>Master Craftsman Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <div class="image-container">
+                        <img src="images/industry3.png"
+                            alt="Quality Control" class="feature-image">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Image Left, Content Right -->
+            <div class="feature-section feature-right" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-visual">
+                    <div class="image-container">
+                        <img src="images/industry4.png"
+                            alt="Sustainable Luxury" class="feature-image">
+
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="feature-badge">04</div>
+                    </div>
+                    <h3 class="feature-title">Sustainable Luxury</h3>
+                    <p class="feature-description">
+                        Premium eco-conscious materials and processes that respect both your investment and the
+                        environment.
+                        Luxury redefined for the conscious connoisseur.
+                    </p>
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>Water-Based Products</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check"></i>
+                            <span>Carbon Neutral Operations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="section-subheading montserrat" data-aos="fade-up">Our Services</p>
+                <h2 class="section-heading-center cormorant text-gradient" data-aos="fade-up" data-aos-delay="200">
+                    Premium Automotive Care</h2>
+                <p class="max-w-2xl mx-auto text-center text-gray-300 montserrat light-weight" data-aos="fade-up"
+                    data-aos-delay="400">
+                    We offer a comprehensive range of automotive care services designed to protect, enhance, and restore
+                    your vehicle's beauty and performance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-img-container">
+                        <img src="images/service1.png"
+                            alt="Body Shop & Paint Refinishing" class="service-img">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title cormorant">Body Shop & Paint Refinishing</h3>
+                        <p class="service-text montserrat">
+                            Our expert technicians repair and restore your vehicle's exterior to factory-like condition.
+                            From minor dent removal to complete paint refinishing, we use premium materials and advanced
+                            techniques to achieve flawless results.
+                        </p>
+                        <ul class="service-features">
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Premium Automotive Painting</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Collision Repair & Dent Removal</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Scratch & Paint Repair</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Rust Protection & Underbody Coating</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Custom Body Kits & Alloy Wheel Coating</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Chrome Delete & High-Gloss Enhancements</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-img-container">
+                        <img src="images/service2.png"
+                            alt="Advanced Detailing & Protection" class="service-img">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title cormorant">Advanced Detailing & Protection</h3>
+                        <p class="service-text montserrat">
+                            Experience unmatched detailing services that go beyond cleaning. Our meticulous process enhances
+                            your vehicle's appearance while providing long-lasting protection against environmental
+                            elements.
+                        </p>
+                        <ul class="service-features">
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Paint Protection Film (PPF)</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Nano Ceramic & Graphene Coating</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Multi-Stage Paint Correction & Polishing</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Premium Wax Treatments</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Headlamp & Plastic Trim Restoration</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Windshield & Glass Coatings</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Interior Deep Cleaning & Fabric Protection</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Engine Bay Detailing</span>
+                            </li>
+                            <li class="service-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Luxury Car Wash & Maintenance Packages</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="btn-primary" data-aos="fade-up" data-aos-delay="1000">Book a Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container mx-auto px-6 py-20">
+            <div class="text-center mb-16">
+                <p class="section-subheading montserrat text-red-600" data-aos="fade-up">Our Gallery</p>
+                <h2 class="section-heading-center cormorant text-black" data-aos="fade-up" data-aos-delay="200">
+                    Craftsmanship Showcase</h2>
+                <p class="max-w-2xl mx-auto text-center text-gray-600 montserrat light-weight" data-aos="fade-up"
+                    data-aos-delay="400">
+                    Witness the transformation of ordinary vehicles into extraordinary masterpieces through our expert
+                    craftsmanship.
+                </p>
+            </div>
+
+            <div class="gallery-container" data-aos="fade-up" data-aos-delay="600">
+                <!-- Row 1 -->
+                <div class="gallery-row">
+                    <div class="gallery-item wide">
+                        <img src="images/car1.jpg" alt="Luxury SUV">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/car2.jpg" alt="Car Detail">
+                    </div>
+                    <div class="gallery-item narrow">
+                        <img src="images/bike1.jpg" alt="Luxury Car">
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="gallery-row">
+                    <div class="gallery-item narrow">
+                        <img src="images/bike2.jpg" alt="Car Detailing">
+                    </div>
+                    <div class="gallery-item wide">
+                        <img src="images/car3.jpg" alt="Ceramic Coating">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bike3.jpg" alt="Car Interior">
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="images/car4.jpg" alt="Luxury Car">
+                    </div>
+                    <div class="gallery-item narrow">
+                        <img src="images/car5.jpg" alt="Premium Detailing">
+                    </div>
+                    <div class="gallery-item wide">
+                        <img src="images/car6.jpg" alt="Car Care">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container mx-auto px-6">
+            <div class="testimonial-container">
+                <div class="text-center mb-16">
+                    <p class="section-subheading montserrat" data-aos="fade-up">Testimonials</p>
+                    <h2 class="section-heading-center cormorant text-gradient" data-aos="fade-up" data-aos-delay="200">
+                        Trusted by Hundreds of Happy Car Owners</h2>
+                    <p class="max-w-2xl mx-auto text-center text-gray-300 montserrat light-weight" data-aos="fade-up"
+                        data-aos-delay="400">
+                        We're proud to have earned the trust of hundreds of car owners who demand the best. Our
+                        commitment to excellence and attention to detail have resulted in a loyal community of satisfied
+                        customers.
+                    </p>
+                </div>
+
+                <!-- Featured Testimonial -->
+                <div class="featured-testimonial" data-aos="fade-up" data-aos-delay="600">
+                    <div class="featured-quote">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote class="testimonial-text-large">
+                            "Corsa transformed my Mercedes completely. The ceramic coating they applied has been protecting my car for over a year now, and it still looks showroom fresh. Their attention to detail is unmatched."
+                        </blockquote>
+                        <div class="featured-author">
+                            <div class="author-image">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Michael Rodriguez" class="w-16 h-16 rounded-full object-cover">
+                            </div>
+                            <div class="author-details">
+                                <h4 class="cormorant text-xl text-white">Michael Rodriguez</h4>
+                                <p class="montserrat text-gray-400">CEO, AutoLux Group</p>
+                                <div class="rating-featured">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">5.0 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="verified-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Verified Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
+                    <div class="modern-testimonial-card" data-aos="fade-up" data-aos-delay="700">
+                        <div class="card-header">
+                            <div class="stars-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="review-source">Google Reviews</div>
+                        </div>
+                        <p class="review-text">
+                            "Professional service from start to finish. My BMW looks incredible after their paint correction and ceramic coating."
+                        </p>
+                        <div class="reviewer">
+                            <div class="reviewer-avatar">
+                                <img src="images/testimonial2.png" alt="Maria Santos" class="w-10 h-10 rounded-full object-cover">
+                            </div>
+                            <div class="reviewer-info">
+                                <h5 class="reviewer-name">Maria Santos</h5>
+                                <p class="reviewer-title">BMW M3 Owner</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modern-testimonial-card" data-aos="fade-up" data-aos-delay="800">
+                        <div class="card-header">
+                            <div class="stars-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="review-source">Yelp</div>
+                        </div>
+                        <p class="review-text">
+                            "Exceptional work! The paint protection film installation was flawless. Highly recommend for luxury vehicles."
+                        </p>
+                        <div class="reviewer">
+                            <div class="reviewer-avatar">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Anvar Khan" class="w-10 h-10 rounded-full object-cover">
+                            </div>
+                            <div class="reviewer-info">
+                                <h5 class="reviewer-name">Anvar Khan</h5>
+                                <p class="reviewer-title">Mercedes AMG Owner</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modern-testimonial-card" data-aos="fade-up" data-aos-delay="900">
+                        <div class="card-header">
+                            <div class="stars-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="review-source">Facebook</div>
+                        </div>
+                        <p class="review-text">
+                            "Outstanding attention to detail. My Porsche has never looked better. The team at Corsa is truly exceptional."
+                        </p>
+                        <div class="reviewer">
+                            <div class="reviewer-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Franklin Jose" class="w-10 h-10 rounded-full object-cover">
+                            </div>
+                            <div class="reviewer-info">
+                                <h5 class="reviewer-name">Franklin Jose</h5>
+                                <p class="reviewer-title">Porsche 911 Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="trust-indicators" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="trust-stat">
+                        <div class="trust-number">4.9/5</div>
+                        <div class="trust-label">Average Rating</div>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="trust-number">500+</div>
+                        <div class="trust-label">Reviews</div>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="trust-number">100%</div>
+                        <div class="trust-label">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="section-subheading montserrat" data-aos="fade-up">Get in Touch</p>
+                <h2 class="section-heading-center cormorant text-gradient" data-aos="fade-up" data-aos-delay="200">
+                    Connect With Us</h2>
+                <p class="max-w-2xl mx-auto text-center text-gray-300 montserrat light-weight" data-aos="fade-up"
+                    data-aos-delay="400">
+                    How Can We Help You? If you have any enquiries please message us!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Details & Maps -->
+                <div data-aos="fade-right" data-aos-delay="600" class="space-y-8">
+                    <!-- Single Contact Details Card -->
+                    <div class="contact-card group" data-aos="fade-up" data-aos-delay="700">
+                        <h3 class="cormorant text-2xl text-white mb-6 text-center">Get Connected</h3>
+
+                        <!-- Location -->
+                        <div class="contact-item mb-6">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="cormorant text-white">Our Location</h4>
+                                <p class="montserrat text-gray-300">Near Mohammaden High School, Kollakadavu, Chengannur, Kerala, India</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="contact-item mb-6">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="cormorant text-white">Call Us</h4>
+                                <p class="montserrat text-gray-300">+91 7025555185</p>
+                                <p class="montserrat text-gray-300">+91 7025555186</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="contact-item mb-6">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="cormorant text-white">Email</h4>
+                                <p class="montserrat text-gray-300">info@corsaautomotive.com</p>
+                            </div>
+                        </div>
+
+                        <!-- Working Hours -->
+                        <div class="contact-item mb-8">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="cormorant text-white">Working Hours</h4>
+                                <p class="montserrat text-gray-300">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                                <p class="montserrat text-gray-300">Sunday: By appointment only</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="text-center pt-6 border-t border-gray-600 mb-6">
+                            <h4 class="cormorant mb-4 text-white">Follow Us</h4>
+                            <div class="flex justify-center space-x-4">
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Find Us Map -->
+                        <div class="pt-6 border-t border-gray-600">
+                            <div class="text-center mb-4">
+                                <h4 class="cormorant text-white mb-2">Find Us Here</h4>
+                            </div>
+                            <div class="maps-container">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.2506843487544!2d76.6135!3d9.3203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0673b1cbf1a3b5%3A0x5a8a2d3f4e6b7c8d!2sKollakadavu%2C%20Chengannur%2C%20Kerala%2C%20India!5e0!3m2!1sen!2sus!4v1234567890123"
+                                    width="100%"
+                                    height="200"
+                                    style="border:0; border-radius: 12px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    class="w-full">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Contact Form -->
+                <div data-aos="fade-left" data-aos-delay="800" class="h-full">
+                    <div class="premium-contact-form">
+                        <div class="text-center mb-8">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full mb-4 shadow-xl">
+                                <i class="fas fa-paper-plane text-white text-xl"></i>
+                            </div>
+                            <h3 class="cormorant text-3xl mb-2 text-white">Send a Message</h3>
+                            <p class="text-gray-300 montserrat">Get in touch with our expert team</p>
+                        </div>
+
+                        <form action="#" method="post" class="flex-1 flex flex-col">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label montserrat text-gray-300 mb-2 block">Your Name*</label>
+                                    <input type="text" id="name" name="name" class="form-input montserrat" placeholder="Enter your full name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="form-label montserrat text-gray-300 mb-2 block">Your Email*</label>
+                                    <input type="email" id="email" name="email" class="form-input montserrat" placeholder="your@email.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <label for="phone" class="form-label montserrat text-gray-300 mb-2 block">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input montserrat" placeholder="+91 XXXXX XXXXX">
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <label for="service" class="form-label montserrat text-gray-300 mb-2 block">Service of Interest</label>
+                                <select id="service" name="service" class="form-input montserrat">
+                                    <option value="" selected disabled>Select a service</option>
+                                    <option value="detailing">Advanced Detailing & Protection</option>
+                                    <option value="ceramic">Nano Ceramic & Graphene Coating</option>
+                                    <option value="ppf">Paint Protection Film (PPF)</option>
+                                    <option value="paint">Premium Automotive Painting</option>
+                                    <option value="collision">Collision Repair & Refinishing</option>
+                                    <option value="other">Other Services</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-6 flex-1">
+                                <label for="message" class="form-label montserrat text-gray-300 mb-2 block">Your Message...</label>
+                                <textarea id="message" name="message" rows="12" class="form-input montserrat h-full min-h-[300px]" placeholder="Tell us about your vehicle and what you're looking for..."></textarea>
+                            </div>
+
+                            <button type="submit" class="form-submit montserrat mt-4">
+                                <span class="relative z-10">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="cta-section">
+        <div class="cta-content">
+            <h3 class="cta-title">Ready to Experience Excellence?</h3>
+            <p class="cta-subtitle">Join the elite circle of automotive connoisseurs who demand nothing but
+                perfection.</p>
+            <button class="premium-cta">
+                <span class="cta-text">Schedule Consultation</span>
+                <div class="cta-shine"></div>
+                <i class="fas fa-arrow-right cta-arrow"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#home" class="block">
+                        <img src="logo.png" alt="CORSA" class="h-28 w-28">
+                    </a>
+                    <p class="footer-about montserrat">
+                        Corsa: Where passion meets precision, transforming vehicles into masterpieces. Our commitment to
+                        excellence ensures an unparalleled automotive care experience.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading cormorant">Useful Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link">
+                            <a href="#home">Home</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#about">About Us</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#gallery">Gallery</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#contact">Contact Us</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">Terms and Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading cormorant">Our Services</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link">
+                            <a href="#services">Paint Correction</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Ceramic Coating</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Paint Protection Film</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Interior Detailing</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Leather Restoration</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Wheel Refinishing</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#services">Engine Bay Detailing</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading cormorant">Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                Near Mohammaden High School, Kollakadavu, Chengannur, Kerala, India
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                +91 7025555185
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                info@corsaautomotive.com
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                Monday - Saturday: 9:00 AM - 6:00 PM<br>
+                                Sunday: By appointment only
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    &copy; 2025 Corsa Automotive. All Rights Reserved
+                </p>
+
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="lightbox-nav lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="lightbox-nav lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true
+            });
+
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('.navbar');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Menu Toggle Functionality
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const menuCloseBtn = document.getElementById('menuCloseBtn');
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            // Function to open menu
+            function openMenu() {
+                // First make it visible but transparent
+                fullscreenMenu.style.display = 'block';
+                fullscreenMenu.style.pointerEvents = 'auto';
+
+                // Force a reflow to ensure the transition happens
+                void fullscreenMenu.offsetWidth;
+
+                // Now add the blur and opacity
+                fullscreenMenu.classList.add('bg-opacity-80');
+                fullscreenMenu.classList.add('backdrop-blur-lg');
+                fullscreenMenu.classList.add('opacity-100');
+            }
+
+            // Function to close menu
+            function closeMenu() {
+                // Remove the blur and opacity
+                fullscreenMenu.classList.remove('bg-opacity-80');
+                fullscreenMenu.classList.remove('backdrop-blur-lg');
+                fullscreenMenu.classList.remove('opacity-100');
+
+                // After transition is complete, hide the menu
+                setTimeout(() => {
+                    fullscreenMenu.style.display = 'none';
+                    fullscreenMenu.style.pointerEvents = 'none';
+                }, 500); // Match this to your transition duration
+            }
+
+            // Add click event listeners
+            menuToggleBtn.addEventListener('click', openMenu);
+            menuCloseBtn.addEventListener('click', closeMenu);
+
+            // Close menu when a link is clicked
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Parallax Effect
+            function parallaxEffect() {
+                const scrolled = window.scrollY;
+
+                // Light rays parallax effect
+                const rays = document.querySelector('.section-transition-rays');
+                if (rays) {
+                    rays.style.transform = `translateY(${scrolled * 0.15}px) rotate(-45deg)`;
+
+                    // Change opacity based on scroll position
+                    const heroHeight = document.querySelector('.hero-section').offsetHeight;
+                    const opacityValue = Math.max(0, 1 - (scrolled / (heroHeight * 0.5)));
+                    rays.style.opacity = opacityValue * 0.7; // Adjust the max opacity
+                }
+
+                // Light transition effect
+                const lightTransition = document.querySelector('.section-transition-light');
+                if (lightTransition) {
+                    lightTransition.style.transform = `translateY(${50 + (scrolled * 0.05)}%)`;
+
+                    // Increase opacity slightly as we scroll
+                    const opacityValue = Math.min(0.8, 0.6 + (scrolled / 1000));
+                    lightTransition.style.opacity = opacityValue;
+                }
+
+                // Apply parallax to other elements if needed
+                document.querySelectorAll('.parallax-element').forEach(element => {
+                    const speed = element.dataset.speed || 0.2;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            }
+
+            // Add scroll event for parallax effects
+            window.addEventListener('scroll', parallaxEffect);
+            // Initialize parallax effect
+            parallaxEffect();
+        });
+
+        // Fade In Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkFade);
+        checkFade(); // Check on load
+
+        // Gallery Lightbox
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+
+        let currentIndex = 0;
+        const galleryImages = Array.from(galleryItems).map(item => item.querySelector('img').src);
+
+        galleryItems.forEach((item, index) => {
+            const viewButton = item.querySelector('.gallery-btn');
+
+            viewButton.addEventListener('click', function () {
+                currentIndex = index;
+                lightboxImage.src = galleryImages[currentIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', function () {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        lightboxPrev.addEventListener('click', function () {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentIndex];
+        });
+
+        lightboxNext.addEventListener('click', function () {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentIndex];
+        });
+
+        // Testimonial Navigation (simplified - would be expanded in a real implementation)
+        const testimonialNavButtons = document.querySelectorAll('.nav-button');
+
+        testimonialNavButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                alert('Testimonial navigation would cycle through additional testimonials in a real implementation.');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
